@@ -1,0 +1,14 @@
+name: JS Actions
+
+on: [push]
+
+jobs:
+  check-slides:
+    runs-on: ubuntu-latest
+    name: Checks to see if there are any valid slides
+    steps:
+      - name: Hello world action step
+        id: hello
+        uses: phamelink/course-automation-github-action@v1.1
+        with:
+          who-to-greet: "Philip and Thomas"
