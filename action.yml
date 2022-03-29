@@ -1,13 +1,18 @@
-name: "Hello World"
-description: "Greet someone and record the time"
+name: "Check valid slides"
+description: "Check for valid slides in the pull request"
+author: "Philip Hamelink and Thomas Srour"
+
 inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
+  token:
+    description: "GitHub Secret Token used to comment on PR"
     required: true
-    default: "World"
-outputs:
-  time: # id of output
-    description: "The time we greeted you"
+  allFiles:
+    description: "All files resulting from PR"
+    required: true
+  removedFiles:
+    description: "Removed files resulting from PR"
+    required: true
+
 runs:
   using: "node16"
   main: "dist/index.js"
