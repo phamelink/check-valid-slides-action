@@ -6,12 +6,6 @@ inputs:
   token:
     description: "GitHub Secret Token used to comment on PR"
     required: false
-  allFiles:
-    description: "All files resulting from PR"
-    required: true
-  removedFiles:
-    description: "Removed files resulting from PR"
-    required: true
 
 runs:
   using: "node16"
