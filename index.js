@@ -8,7 +8,7 @@ async function run() {
 
 		// console.log(allFiles);
 
-		const github_token = core.getInput("GITHUB_TOKEN");
+		const github_token = core.getInput("token");
 		// const github_token = "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";
 		const context = github.context;
 		console.log("hehe v1.2.5");
