@@ -9807,7 +9807,7 @@ async function run() {
 	try {
 		recursive(
 			"./contributions/presentation",
-			["!*.pdf"],
+			["!*.pdf", "!*.md"],
 			function (err, files) {
 				// `files` is an array of file paths
 				console.log(files);
@@ -9815,10 +9815,8 @@ async function run() {
 		);
 
 		const allFiles = core.getInput("allFiles");
-		const removedFiles = core.getInput("removedFiles");
 
 		console.log(allFiles);
-		console.log(removedFiles);
 
 		// const github_token = core.getInput("GITHUB_TOKEN");
 
