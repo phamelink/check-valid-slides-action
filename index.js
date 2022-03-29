@@ -29,21 +29,18 @@ async function run() {
 			},
 		});
 
-		console.log(
-			"DIFF FILES",
-			pullRequest.map((pr) => pr.filename)
-		);
+		console.log("DIFF FILES", pullRequest);
 		// const new_comment = octokit.issues.createComment({
 		// 	...context.repo,
 		// 	issue_number: pull_request_number,
 		// 	body: message,
 		// });
-		pullRequest.foreach((pr) => {
-			recursive(pr.filename, function (err, files) {
-				// `files` is an array of file paths
-				console.log("HEHE READING FILE", files);
-			});
-		});
+		// pullRequest.foreach((pr) => {
+		// 	recursive(pr.filename, function (err, files) {
+		// 		// `files` is an array of file paths
+		// 		console.log("HEHE READING FILE", files);
+		// 	});
+		// });
 	} catch (error) {
 		core.setFailed(error.message);
 	}
