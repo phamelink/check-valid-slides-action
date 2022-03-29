@@ -5,7 +5,7 @@ author: "Philip Hamelink and Thomas Srour"
 inputs:
   token:
     description: "GitHub Secret Token used to comment on PR"
-    required: false
+    required: true
 
 runs:
   using: "node16"

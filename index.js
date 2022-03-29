@@ -11,15 +11,18 @@ async function run() {
 		const github_token = core.getInput("token");
 		// const github_token = "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";
 		const context = github.context;
-		console.log("hehe v1.2.5");
+		console.log("hehe v1.2.23");
 		console.log("context", context);
-		// if (context.payload.pull_request == null) {
-		// 	core.setFailed("No pull request found.");
-		// 	return;
-		// }
+
+		if (context.payload.pull_request == null) {
+			core.setFailed("No pull request found.");
+			return;
+		}
 		const pull_request_number = context.payload.pull_request.number;
 
 		const octokit = github.getOctokit(github_token);
+
+		console.log("OCTOKIT WORKS", octokit);
 
 		const { data: pullRequest } = await octokit.rest.pulls.listFiles({
 			...context.repo,
