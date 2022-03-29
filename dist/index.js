@@ -9818,8 +9818,7 @@ async function run() {
 
 		// console.log(allFiles);
 
-		// const github_token = core.getInput("GITHUB_TOKEN");
-
+		const github_token = core.getInput("GITHUB_TOKEN");
 		const context = github.context;
 		console.log("hehe v1.2.5");
 		console.log(context);
@@ -9829,7 +9828,17 @@ async function run() {
 		// }
 		// const pull_request_number = context.payload.pull_request.number;
 
-		// const octokit = new github.GitHub(github_token);
+		const octokit = new github.GitHub(github_token);
+		const { data: pullRequest } = await octokit.rest.pulls.get({
+			owner: "phamelink",
+			repo: "devops-course",
+			pull_number: context.payload.pull_request.number,
+			mediaType: {
+				format: "diff",
+			},
+		});
+
+		console.log(pullRequest);
 		// const new_comment = octokit.issues.createComment({
 		// 	...context.repo,
 		// 	issue_number: pull_request_number,
