@@ -16,7 +16,7 @@ jobs:
       - uses: phamelink/check-valid-slides-action@v1
 ```
 
-We chose here to only run this action if the PR is already labeledd a presentation, so as not to run for all PR.
+We chose here to only run this action if the PR is already labeled a presentation, so as not to run for all PR.
 
 ---
 
