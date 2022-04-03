@@ -2,11 +2,38 @@ name: "Check valid slides"
 description: "Check for valid slides in the pull request"
 author: "Philip Hamelink and Thomas Srour"
 
-inputs:
-  token:
-    description: "GitHub Secret Token used to comment on PR"
-    required: true
-
 runs:
-  using: "node16"
-  main: "dist/index.js"
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - id: file_changes
+      uses: trilom/file-changes-action@v1.2.3
+      with:
+        output: ""
+    - run: |
+        ADDED_FILES='${{ steps.file_changes.outputs.files_added}}'
+        MODIFIED_FILES='${{ steps.file_changes.outputs.files_modified}}'
+        ALL_FILES="$ADDED_FILES $MODIFIED_FILES"
+
+        IFS=" "
+
+        for fname in $ALL_FILES
+        do
+          if grep -q "contributions/presentation/" <<< "$fname"; then
+            if grep -q ".md" <<< "$fname" && grep "http://\|https://" $fname | grep -q -v "github"; then 
+              echo "HTTPS"
+              exit 0
+            fi 
+            if grep -q ".pdf" <<< "$fname"; then
+              echo "PDF"
+              exit 0
+            fi
+          fi
+        done
+
+        exit 1
+      shell: bash
+# inputs:
+#   token:
+#     description: "GitHub Secret Token used to comment on PR"
+#     required: true
